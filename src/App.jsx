@@ -1,23 +1,9 @@
-import H1 from "./components/atoms/h1";
-import Posts from "./components/molecules/Posts";
-import CreatePostBtn from "./components/atoms/CreatePostBtn";
+import {MainPage} from "./components/templates/MainPage";
 
-function App() {
+export function App() {
     return (
         <>
-            <CreatePostBtn/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
-            <Posts/>
+            <MainPage />
         </>
     )
 }
-
-export default App;

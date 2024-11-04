@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const useApi = () => {
+export const useApi = () => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -33,5 +33,3 @@ const useApi = () => {
     
     return {loading, error, request, clearError};
 }
-
-export default useApi;
