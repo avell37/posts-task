@@ -1,6 +1,6 @@
-import {useApi} from './api.hook';
+import { useApi } from './api.hook';
 
-export const jsonService = () => {
+export const useJsonService = () => {
     const {loading, error, request, clearError} = useApi();
 
     const _apiBase = 'https://jsonplaceholder.typicode.com/';
@@ -15,5 +15,5 @@ export const jsonService = () => {
         return res;
     }
 
-    return {getAllPosts, getPostComments}
+    return {loading, error, clearError, getAllPosts, getPostComments};
 }

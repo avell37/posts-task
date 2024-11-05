@@ -6,6 +6,9 @@ export default {
             fontFamily: {
                 ubuntu: ["Ubuntu", "sans-serif"],
             },
+            spacing: {
+                30: "28.6%",
+            },
         },
     },
     plugins: [],
