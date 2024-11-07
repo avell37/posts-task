@@ -1,4 +1,9 @@
-export const FilterBtns = () => {
+import { useJsonService } from "../api/jsonService";
+
+export const FilterBtns = ({setFilterBy}) => {
+
+    const { getAllPosts } = useJsonService();
+
     return (
         <div className="flex justify-center space-x-2">
             <button className="transition-all text-white bg-blue-500 hover:bg-blue-600 px-2 py-2 rounded hover:translate-y-px">По заголовку</button>

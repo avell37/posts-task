@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { FilterBtns } from "../molecules/FilterBtns";
 
-export const Search = () => {
+export const Search = (props) => {
 
     const [term, setTerm] = useState('');
 
     const onUpdateSearch = (e) => {
         const input = e.target.value;
         setTerm(input);
+        props.onUpdateSearch(input);
     }
 
     return (

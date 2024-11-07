@@ -29,6 +29,26 @@ export const useApi = () => {
     }, []) 
 
     const clearError = useCallback(() => setError(null), []);
+
+    const postRequest = useCallback(async (url, postData, headers = {'Content-Type': 'application/json'}) => {
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(postData),
+                headers: headers
+            });
     
-    return {loading, error, request, clearError};
+            if (!res.ok) {
+                throw new Error(`Error! Could not fetch ${url}, status: ${res.status}`)
+            }
+
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            throw err;
+        }
+
+    }, [])
+    
+    return {loading, error, request, clearError, postRequest};
 }

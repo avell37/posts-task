@@ -8,7 +8,7 @@ import { Error } from '../atoms/Error';
 
 const PostContent = ({ posts, like, handleLike }) => {
 
-    const { post } = posts;
+    const {post} = posts;
 
     return (
         <div className='flex border-solid rounded-t border-2 border-gray-700 w-2/5 h-auto m-auto mt-10 flex-col relative'>
@@ -26,7 +26,7 @@ const PostContent = ({ posts, like, handleLike }) => {
     )
 }
 
-export const Post = ({ posts }) => {
+export const Post = ({ posts}) => {
     
     const [like, setLike] = useState(false);
     
@@ -38,7 +38,12 @@ export const Post = ({ posts }) => {
 
     const errorMessage = error ? <Error/> : null;
     const spinner = loading ? <Loading /> : null;
-    const content = !(loading || error) ? <PostContent posts={posts} like={like} handleLike={handleLike} /> : null;
+    const content = !(loading || error) ? 
+    <PostContent 
+        posts={posts} 
+        like={like} 
+        handleLike={handleLike} 
+        /> : null;
 
     return (
         <>
