@@ -1,6 +1,6 @@
-export const Comment = () => {
+export const Comment = ({ onCommentClick }) => {
     return (
-        <div className="inline-block cursor-pointer">
+        <div className="inline-block cursor-pointer" onClick={onCommentClick}>
             <svg
             className="absolute bottom-2 left-20 bg-gray-500 rounded-xl w-16 h-7 hover:bg-gray-600 hover:translate-y-px"
             viewBox="0 0 48 48" 
