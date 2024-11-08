@@ -27,9 +27,7 @@ export const useJsonService = () => {
 
     const deletePost = async (id) => {
         try {
-            console.log(`Attempting to delete post with ID: ${id}`);
             await request(`${_apiBase}posts/${id}`, 'DELETE');
-            console.log(`Post with ID: ${id} deleted successfully`);
         } catch (err) {
             throw err;
         }
