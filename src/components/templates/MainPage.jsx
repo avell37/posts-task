@@ -27,7 +27,6 @@ export const MainPage = () => {
             return { post: {...post, like: false }, comments };
         }));
         setPosts(commentsData);
-        console.log(commentsData);
         }
         fetchData();
     }, [])
