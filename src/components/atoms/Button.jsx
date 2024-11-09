@@ -1,4 +1,4 @@
-export const Btn = ({ title, onClick }) => {
+export const Button = ({ title, onClick }) => {
     return (
         <button
             onClick={onClick}

@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
-import { Post } from "../organisms/Post";
-import { Comments } from "../organisms/Comments";
+import { useState, useEffect, useCallback } from "react";
 import { useJsonService } from "../api/jsonService";
-import { Btn } from "../atoms/Btn";
+import { Button } from "../atoms/Button";
 import { Search } from "../atoms/Search";
-import { Loading } from "../atoms/Loading";
-import { Error } from "../atoms/Error";
 import { CreatePostForm } from "../organisms/CreatePostForm";
+import { FilteredPosts } from "../molecules/FilteredPosts";
 
 export const MainPage = () => {
     const [posts, setPosts] = useState([]);
@@ -69,7 +66,7 @@ export const MainPage = () => {
         setOpenComments((prevId) => (prevId === postId ? null : postId));
     };
 
-    const applyFilters = () => {
+    const applyFilters = useCallback(() => {
         let filteredPosts = posts;
 
         if (term) {
@@ -89,7 +86,7 @@ export const MainPage = () => {
         }
 
         return filteredPosts;
-    };
+    });
 
     const resetFilters = () => {
         setTerm("");
@@ -110,42 +107,31 @@ export const MainPage = () => {
 
     const filteredPosts = applyFilters();
 
-    const errorMessage = error ? <Error /> : null;
-    const spinner = loading ? <Loading /> : null;
-    const content = !(loading || error)
-        ? filteredPosts.map((posts, index) => (
-              <div key={posts.id || index}>
-                  <Post
-                      posts={posts}
-                      toggleLikeStatus={toggleLikeStatus}
-                      toggleComments={() => toggleComments(posts.post.id)}
-                      onDeletePost={deleteExistingPost}
-                  />
-                  {openComments === posts.post.id && <Comments posts={posts} />}
-              </div>
-          ))
-        : null;
-
     return (
         <div className="flex flex-col">
             <Search
+                onlyLikedPosts={onlyLikedPosts}
                 updateSearch={updateSearch}
                 setFilters={setFilters}
-                onlyLikedPosts={onlyLikedPosts}
                 setOnlyLikedPosts={setOnlyLikedPosts}
                 resetFilters={resetFilters}
             />
             <div className="flex justify-center">
-                <Btn title={"Create new post"} onClick={toggleCreateForm} />
+                <Button title={"Create new post"} onClick={toggleCreateForm} />
             </div>
             <CreatePostForm
                 isOpen={showCreateForm}
                 onClose={toggleCreateForm}
                 onPostCreated={addNewPost}
             />
-            {errorMessage}
-            {spinner}
-            {content}
+            <FilteredPosts
+                openComments={openComments}
+                loading={loading}
+                error={error}
+                filteredPosts={filteredPosts}
+                toggleLikeStatus={toggleLikeStatus}
+                deleteExistingPost={deleteExistingPost}
+            />
         </div>
     );
 };

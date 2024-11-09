@@ -1,5 +1,4 @@
-export const User = () => {
-    return (
+export const User = () => {(
         <div className="">
             <svg
                 width="35px"

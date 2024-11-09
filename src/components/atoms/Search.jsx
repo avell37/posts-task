@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { FilterBtns } from "../molecules/FilterBtns";
 
 export const Search = ({
-    updateSearch,
-    setFilters,
-    onlyLikedPosts,
-    setOnlyLikedPosts,
-    resetFilters,
+    updateSearch, 
+    setFilters, 
+    onlyLikedPosts, 
+    setOnlyLikedPosts, 
+    resetFilters
 }) => {
     const [term, setTerm] = useState("");
 
-    const onUpdateSearch = (e) => {
+    const onUpdateSearch = useCallback((e) => {
         const input = e.target.value;
         setTerm(input);
         updateSearch(input);
-    };
+    }, [updateSearch]);
 
     return (
         <div className="flex justify-center items-center mt-6 space-x-2 flex-wrap">
