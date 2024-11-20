@@ -1,20 +1,19 @@
-import { useApi } from './api.hook';
+import { useApi } from "./api.hook";
 
 export const useJsonService = () => {
+    const { loading, error, request, clearError, postRequest } = useApi();
 
-    const {loading, error, request, clearError, postRequest } = useApi();
-
-    const _apiBase = 'https://jsonplaceholder.typicode.com/';
+    const _apiBase = "https://jsonplaceholder.typicode.com/";
 
     const getAllPosts = async () => {
         const res = await request(`${_apiBase}posts`);
         return res;
-    }
+    };
 
     const getPostComments = async (id) => {
-        const res = await request(`${_apiBase}posts/${id}/comments`)
+        const res = await request(`${_apiBase}posts/${id}/comments`);
         return res;
-    }
+    };
 
     const createPost = async (postData) => {
         try {
@@ -23,15 +22,23 @@ export const useJsonService = () => {
         } catch (err) {
             throw err;
         }
-    }
+    };
 
     const deletePost = async (id) => {
         try {
-            await request(`${_apiBase}posts/${id}`, 'DELETE');
+            await request(`${_apiBase}posts/${id}`, "DELETE");
         } catch (err) {
             throw err;
         }
-    }
+    };
 
-    return {loading, error, clearError, getAllPosts, getPostComments, createPost, deletePost};
-}
+    return {
+        loading,
+        error,
+        clearError,
+        getAllPosts,
+        getPostComments,
+        createPost,
+        deletePost,
+    };
+};

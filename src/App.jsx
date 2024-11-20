@@ -1,9 +1,7 @@
-import {MainPage} from "./components/templates/MainPage";
+import { MainPage } from "./components/templates/MainPage";
 
 export function App() {
     return (
-        <>
-            <MainPage />
-        </>
-    )
+        <MainPage />
+    );
 }
